@@ -14,10 +14,12 @@ export default function MailboxForm({ addBox }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Enter a Boxholder:
+    <>
+      <h1>New Mailbox</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="boxOwner">Enter a Boxholder:</label>
         <input
+          id="boxOwner"
           type="text"
           placeholder="Boxholder name"
           name="boxOwner"
@@ -25,11 +27,10 @@ export default function MailboxForm({ addBox }) {
           value={formData.boxOwner}
           onChange={handleChange}
         />
-      </label>
 
-      <label>
-        Select a Box Size:
+        <label htmlFor="boxSize">Select a Box Size:</label>
         <select
+          id="boxSize"
           name="boxSize"
           required
           value={formData.boxSize}
@@ -42,9 +43,9 @@ export default function MailboxForm({ addBox }) {
           <option value="Medium">Medium</option>
           <option value="Large">Large</option>
         </select>
-      </label>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
