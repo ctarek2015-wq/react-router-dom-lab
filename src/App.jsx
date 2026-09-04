@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
 import MailboxList from "./components/MailboxList.jsx";
@@ -8,10 +8,11 @@ import MailboxDetails from "./components/MailboxDetails.jsx";
 
 function App() {
   const [mailboxes, setMailboxes] = useState([]);
-
+  const navigate = useNavigate();
   const addBox = (data) => {
     const id = mailboxes.length + 1;
     setMailboxes([...mailboxes, { ...data, _id: id }]);
+    navigate("/mailboxes");
   };
   console.log(mailboxes);
 
@@ -32,7 +33,10 @@ function App() {
           element={<MailboxList mailboxes={mailboxes} />}
         />
         <Route path="/new-mailbox" element={<MailboxForm addBox={addBox} />} />
-        <Route path="/mailboxes/:mailboxId" element={<MailboxDetails />} />
+        <Route
+          path="/mailboxes/:mailboxId"
+          element={<MailboxDetails mailboxes={mailboxes} />}
+        />
         <Route
           path="*"
           element={

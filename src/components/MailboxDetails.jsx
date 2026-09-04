@@ -1,9 +1,16 @@
-export default function MailboxDetails({ mailbox }) {
+import { useParams } from "react-router";
+
+export default function MailboxDetails({ mailboxes }) {
+  const { mailboxId } = useParams();
+  const mailbox = mailboxes[mailboxId - 1];
   console.log(mailbox);
   return (
     <>
-      <li>{mailbox.boxOwner}</li>
-      <li>{mailbox.boxOwner}</li>
+      <h1>Mailbox {mailbox._id}</h1>
+      <h2>Details</h2>
+
+      <p>Boxholder: {mailbox.boxOwner}</p>
+      <p>Box Size: {mailbox.boxSize}</p>
     </>
   );
 }
