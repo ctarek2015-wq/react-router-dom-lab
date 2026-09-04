@@ -10,8 +10,10 @@ function App() {
   const [mailboxes, setMailboxes] = useState([]);
 
   const addBox = (data) => {
-    setMailboxes([...mailboxes, data]);
+    const id = mailboxes.length + 1;
+    setMailboxes([...mailboxes, { ...data, _id: id }]);
   };
+  console.log(mailboxes);
 
   return (
     <>
