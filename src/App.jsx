@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
 import MailboxList from "./components/MailboxList.jsx";
-import NewMailbox from "./components/NewMailbox.jsx";
+import MailboxForm from "./components/MailboxForm.jsx";
 import MailboxDetails from "./components/MailboxDetails.jsx";
 
 function App() {
   const [mailboxes, setMailboxes] = useState([]);
+
+  const addBox = (data) => {
+    setMailboxes([...mailboxes, data]);
+  };
+
   return (
     <>
       <Navbar />
@@ -24,7 +29,7 @@ function App() {
           path="/mailboxes"
           element={<MailboxList mailboxes={mailboxes} />}
         />
-        <Route path="/new-mailbox" element={<NewMailbox />} />
+        <Route path="/new-mailbox" element={<MailboxForm addBox={addBox} />} />
         <Route path="/mailboxes/:mailboxId" element={<MailboxDetails />} />
         <Route
           path="*"
@@ -35,7 +40,6 @@ function App() {
           }
         />
       </Routes>
-      <h1>heeeeeeeey</h1>
     </>
   );
 }
