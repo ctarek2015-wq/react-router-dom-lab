@@ -12,6 +12,7 @@ export default function MailboxList({ mailboxes }) {
   return (
     <>
       <h1>Mailbox List</h1>
+      <br />
       <ul>
         {mailboxes.map((mailbox) => (
           <li key={mailbox._id}>
